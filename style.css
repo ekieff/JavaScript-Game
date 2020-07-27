@@ -1,0 +1,19 @@
+.mainboard {
+   border: 5px solid black;
+   width: 320px;
+   height: 480px;
+   margin: auto;
+   position: relative;
+};
+.game {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 320px;
+}
+.btn {
+    height: 13%;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 25px;
+}

@@ -3,6 +3,8 @@
 ## Game Description
 Codenames is a game of vocabulary, it will be played through passing turns between two players. Each game play a board will be set of words in a grid. A hint will be provided that relates to the correct word the player should choose. If they correctly choose the board will reset for the next player, and will continue until someone guesses incorrectly.
 
+
+
 ## Functions
 
 - Game set,
@@ -19,7 +21,7 @@ Codenames is a game of vocabulary, it will be played through passing turns betwe
 
 ### Game Set
 
-Game set will begin by forming an array that contains key value pairs of a word and a synonym (per Taylor's suggestion I'll start by hardcoding this for my MVP). I'll need to set the text content of 12 buttons to be equal to the words identified, and align them in a grid. I'll need a function that chooses between these words a specific key, and presents it's pair.
+Game set will begin by forming an array that contains key value pairs of a word and a synonym. I'll need to set the text content of 12 buttons to be equal to the words identified, and align them in a grid. I'll need a function that chooses between these words a specific key, and presents it's pair.
 
 
 ### Game Play
@@ -35,3 +37,6 @@ I'm not sure I have need to check for a win, may need to look at the outline aga
 ### Game Reset
 
 Return to main screen.
+
+#### Layout
+- inspired by button features and mobile apps, want to switch colors between player one and two to highlight changes. Will do some research on most accessible colors/fonts for students.
