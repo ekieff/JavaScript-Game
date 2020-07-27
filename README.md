@@ -23,6 +23,16 @@ Codenames is a game of vocabulary, it will be played through passing turns betwe
 
 Game set will begin by forming an array that contains key value pairs of a word and a synonym. I'll need to set the text content of 12 buttons to be equal to the words identified, and align them in a grid. I'll need a function that chooses between these words a specific key, and presents it's pair.
 
+- JavaScript functions
+
+##### Calling Keys/Values
+Because the vocabulary is logged in key value pairs I can pull keys or values of an array by:
+``` JavaScript 
+console.log(Object.values(words));
+console.log(Object.keys(words));
+```
+
+
 
 ### Game Play
 
