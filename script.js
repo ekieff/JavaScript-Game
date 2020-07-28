@@ -312,6 +312,7 @@ buttonSix.textContent = (gameWords[5][0]);
 
 //log event listener on buttons, if value is true..add to player one score 
 function checkWin(target){
+    console.log(target.textContent);
     if (target.textContent==winningValue[0]){
         console.log(true);
     }else{
@@ -319,10 +320,9 @@ function checkWin(target){
     }
 }
 
-buttonOne.addEventListener('click', checkWin);
-buttonTwo.addEventListener('click', checkWin);
-buttonThree.addEventListener('click', checkWin);
-buttonFour.addEventListener('click', checkWin);
-buttonFive.addEventListener('click', checkWin);
-buttonSix.addEventListener('click', checkWin);
-//buttonTwo.addEventListener('click',)
+buttonOne.addEventListener('click', function(){checkWin(buttonOne)});
+buttonTwo.addEventListener('click', function(){checkWin(buttonTwo)});
+buttonThree.addEventListener('click', function(){checkWin(buttonThree)});
+buttonFour.addEventListener('click', function(){checkWin(buttonFour)});
+buttonFive.addEventListener('click', function(){checkWin(buttonFive)});
+buttonSix.addEventListener('click', function(){checkWin(buttonSix)});
