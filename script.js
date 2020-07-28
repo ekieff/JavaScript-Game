@@ -11,6 +11,7 @@ let buttonSix = document.getElementById('six');
 let opening = document.getElementsByClassName("opening");
 let turn = document.getElementsByClassName("turn");
 let gameWords = [];
+let gameSynonym = document.getElementById("synonym");
 
 words = [
 "Abolish",
@@ -296,7 +297,12 @@ for (i = 0; i < 6; i ++){
     gameWords[i]=(wordsValues());
 }
 console.log(gameWords); //references the word in the gamewords, need to log into the button text content
+
 //create a synonym from the array something like Math.Random(gameWords[][2])
+let winningValue = gameWords[Math.floor(Math.random()*gameWords.length)]
+synonym.textContent = (winningValue[2])
+console.log(winningValue);
+
 buttonOne.textContent = (gameWords[0][0]);
 buttonTwo.textContent = (gameWords[1][0]);
 buttonThree.textContent = (gameWords[2][0]);
@@ -304,4 +310,19 @@ buttonFour.textContent = (gameWords[3][0]);
 buttonFive.textContent = (gameWords[4][0]);
 buttonSix.textContent = (gameWords[5][0]);
 
-//log event listener on buttons, if value is true..add to player one score
+//log event listener on buttons, if value is true..add to player one score 
+function checkWin(target){
+    if (target.textContent==winningValue[0]){
+        console.log(true);
+    }else{
+        console.log(false);
+    }
+}
+
+buttonOne.addEventListener('click', checkWin);
+buttonTwo.addEventListener('click', checkWin);
+buttonThree.addEventListener('click', checkWin);
+buttonFour.addEventListener('click', checkWin);
+buttonFive.addEventListener('click', checkWin);
+buttonSix.addEventListener('click', checkWin);
+//buttonTwo.addEventListener('click',)
