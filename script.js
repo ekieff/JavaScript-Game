@@ -12,7 +12,10 @@ let opening = document.getElementsByClassName("opening");
 let turn = document.getElementsByClassName("turn");
 let gameWords = [];
 let gameSynonym = document.getElementById("synonym");
-
+let player = "blue";
+let blueScore = 0; //remember that light yellow and light blue are lease likely to be unreadable to colorblind students
+let yellowScore = 0;
+console.log(blueScore);
 words = [
 "Abolish",
 "absurd",
@@ -283,6 +286,11 @@ synonyms = [
  "leave"
 ];
 
+//Start with popup of directions
+
+//identify player
+
+
 //return a random word
 
 function wordsValues(){
@@ -313,11 +321,23 @@ buttonSix.textContent = (gameWords[5][0]);
 //log event listener on buttons, if value is true..add to player one score 
 function checkWin(target){
     console.log(target.textContent);
-    if (target.textContent==winningValue[0]){
+    if (target.textContent==winningValue[0] && player=="blue"){
         console.log(true);
-    }else{
+        blueScore ++;
+        player = "yellow";
+        checkIfEndGame();
+    }else if (target.textContent==winningValue[0] && player=="yellow"){
+        console.log(true);
+        yellowScore ++;
+        player = "blue";
+        checkIfEndGame();
+    } else if (target.textContent!==winningValue[0] && player=="blue"){
         console.log(false);
-    }
+    } else if(target.textContent!==winningValue[0] && player=="yellow"){
+        console.log(false);
+    };
+    console.log(blueScore);
+    console.log(yellowScore);
 }
 
 buttonOne.addEventListener('click', function(){checkWin(buttonOne)});
@@ -326,3 +346,15 @@ buttonThree.addEventListener('click', function(){checkWin(buttonThree)});
 buttonFour.addEventListener('click', function(){checkWin(buttonFour)});
 buttonFive.addEventListener('click', function(){checkWin(buttonFive)});
 buttonSix.addEventListener('click', function(){checkWin(buttonSix)});
+
+function checkIfEndGame (){
+    if (blueScore >= 10){
+        console.log("Blue Player Wins!")
+        blueScore = 0;
+        yellowScore = 0;
+    } else if (yellowScore >=10){
+        console.log("Yellow Player Wins!")
+        blueScore = 0;
+        yellowScore = 0;
+    }
+}
