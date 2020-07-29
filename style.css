@@ -4,6 +4,7 @@
    height: 480px;
    margin: auto;
    position: relative;
+   display: none;
 };
 #game {
     display: flex;
@@ -20,4 +21,7 @@
 }
 h1 {
     font-size: 30px;
+}
+#winner{
+    display:none;
 }

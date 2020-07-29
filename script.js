@@ -18,6 +18,10 @@ let blueScore = 0; //remember that light yellow and light blue are lease likely 
 let yellowScore = 0;
 let gameScore = document.getElementById("score");
 let winningValue;
+let startButton = document.getElementById("start");
+let startDiv = document.getElementById("opening");
+let playAgainButton = document.getElementById("playAgain");
+
 console.log(btns);
 words = [
 "Abolish",
@@ -356,15 +360,31 @@ btns.forEach(btn => {
     })
 });
 
+
 function checkIfEndGame (){
     if (blueScore >= 10){
         console.log("Blue Player Wins!")
         blueScore = 0;
         yellowScore = 0;
+        document.getElementById("mainboard").style.display="none";
+        document.getElementById("winner").style.display="block";
+        document.getElementById("winnerTitle").textContent=("Blue Player Wins!")
     } else if (yellowScore >=10){
-        console.log("Yellow Player Wins!")
+        document.getElementById("winnerTitle").textContent=("Yellow Player Wins!")
         blueScore = 0;
         yellowScore = 0;
+        document.getElementById("mainboard").style.display="none";
+        document.getElementById("winner").style.display="block";
     }
 }
 
+startButton.addEventListener('click', function(){
+    startDiv.style.display="none";
+    document.getElementById("mainboard").style.display="block";
+
+})
+
+playAgainButton.addEventListener("click", function(){
+    document.getElementById("mainboard").style.display="block";
+    document.getElementById("winner").style.display="none";
+})
