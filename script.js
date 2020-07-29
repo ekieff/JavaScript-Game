@@ -9,12 +9,14 @@ let buttonFour = document.getElementById('four');
 let buttonFive = document.getElementById('five');
 let buttonSix = document.getElementById('six');
 let opening = document.getElementsByClassName("opening");
-let turn = document.getElementsByClassName("turn");
+let turn = document.getElementById("turn");
 let gameWords = [];
 let gameSynonym = document.getElementById("synonym");
 let player = "blue";
 let blueScore = 0; //remember that light yellow and light blue are lease likely to be unreadable to colorblind students
 let yellowScore = 0;
+let gameScore = document.getElementById("score");
+
 console.log(blueScore);
 words = [
 "Abolish",
@@ -288,22 +290,20 @@ synonyms = [
 
 //Start with popup of directions
 
-//identify player
-
-
 //return a random word
-
 function wordsValues(){
 
     let word = words[Math.floor(Math.random()*words.length)];
     let index = words.indexOf(word);
     let synonym = synonyms[index];
     return[word , index , synonym];
+    
 };
 //use wordsValue to log values into gameWords
 for (i = 0; i < 6; i ++){
     gameWords[i]=(wordsValues());
 }
+
 console.log(gameWords); //references the word in the gamewords, need to log into the button text content
 
 //create a synonym from the array something like Math.Random(gameWords[][2])
@@ -333,11 +333,15 @@ function checkWin(target){
         checkIfEndGame();
     } else if (target.textContent!==winningValue[0] && player=="blue"){
         console.log(false);
+        player = "yellow";
     } else if(target.textContent!==winningValue[0] && player=="yellow"){
         console.log(false);
+        player = "blue";
     };
     console.log(blueScore);
     console.log(yellowScore);
+    turn.textContent = ("It's " +player + "'s turn." );
+    gameScore.textContent = ("Blue: " + blueScore + " Yellow: " + yellowScore)
 }
 
 buttonOne.addEventListener('click', function(){checkWin(buttonOne)});
@@ -358,3 +362,4 @@ function checkIfEndGame (){
         yellowScore = 0;
     }
 }
+
