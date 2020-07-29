@@ -294,6 +294,7 @@ synonyms = [
 //return a random word
 
 function wordsValues(){
+    gameWords = [];
     for (i = 0; i < 6; i ++){
     let word = words[Math.floor(Math.random()*words.length)];
     let index = words.indexOf(word);
@@ -303,20 +304,20 @@ function wordsValues(){
     winningValue = gameWords[Math.floor(Math.random()*gameWords.length)]
     synonym.textContent = (winningValue[2])
     console.log(winningValue);
-    return winningValue;
+    
+//buttons
+    buttonOne.textContent = (gameWords[0][0]);
+    buttonTwo.textContent = (gameWords[1][0]);
+    buttonThree.textContent = (gameWords[2][0]);
+    buttonFour.textContent = (gameWords[3][0]);
+    buttonFive.textContent = (gameWords[4][0]);
+    buttonSix.textContent = (gameWords[5][0]);
 };
+
+
 //use wordsValue to log values into gameWords
 wordsValues();
 console.log(gameWords); //references the word in the gamewords, need to log into the button text content
-
-//create a synonym from the array something like Math.Random(gameWords[][2])
-
-buttonOne.textContent = (gameWords[0][0]);
-buttonTwo.textContent = (gameWords[1][0]);
-buttonThree.textContent = (gameWords[2][0]);
-buttonFour.textContent = (gameWords[3][0]);
-buttonFive.textContent = (gameWords[4][0]);
-buttonSix.textContent = (gameWords[5][0]);
 
 //log event listener on buttons, if value is true..add to player one score 
 function checkWin(target){
@@ -340,7 +341,7 @@ function checkWin(target){
     } else if(target.textContent!==winningValue[0] && player=="yellow"){
         console.log(false);
         player = "blue";
-        wordsValues();
+        wordsValues()
     };
     console.log(blueScore);
     console.log(yellowScore);
