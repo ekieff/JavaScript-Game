@@ -23,7 +23,7 @@ let startDiv = document.getElementById("opening");
 let playAgainButton = document.getElementById("playAgain");
 let customizeButton = document.getElementById("makeYourOwn");
 console.log(btns);
-words = [
+defaultWords = [
 "Abolish",
 "absurd",
 "abuse",
@@ -158,7 +158,7 @@ words = [
 "withdraw"
 ];
 
-synonyms = [
+defaultSynonyms = [
 "repeal",
 "foolish",
 "misconduct",
@@ -292,35 +292,16 @@ synonyms = [
  "jungle",
  "leave"
 ];
+let words;
+let synonyms;
+
 
 //Start with popup of directions
 
 //return a random word
 
-function wordsValues(){
-    gameWords = [];
-    for (i = 0; i < 6; i ++){
-    let word = words[Math.floor(Math.random()*words.length)];
-    let index = words.indexOf(word);
-    let synonym = synonyms[index];
-    gameWords[i]=[word , index , synonym];
-    };
-    winningValue = gameWords[Math.floor(Math.random()*gameWords.length)]
-    synonym.textContent = (winningValue[2])
-    console.log(winningValue);
-    
-//buttons
-    buttonOne.textContent = (gameWords[0][0]);
-    buttonTwo.textContent = (gameWords[1][0]);
-    buttonThree.textContent = (gameWords[2][0]);
-    buttonFour.textContent = (gameWords[3][0]);
-    buttonFive.textContent = (gameWords[4][0]);
-    buttonSix.textContent = (gameWords[5][0]);
-};
-
 
 //use wordsValue to log values into gameWords
-wordsValues();
 console.log(gameWords); //references the word in the gamewords, need to log into the button text content
 
 //log event listener on buttons, if value is true..add to player one score 
@@ -381,6 +362,9 @@ function checkIfEndGame (){
 startButton.addEventListener('click', function(){
     startDiv.style.display="none";
     document.getElementById("mainboard").style.display="block";
+    words=defaultWords;
+    synonyms=defaultSynonyms;
+    wordsValues();
 
 })
 
@@ -388,3 +372,30 @@ playAgainButton.addEventListener("click", function(){
     document.getElementById("mainboard").style.display="block";
     document.getElementById("winner").style.display="none";
 })
+
+customizeButton.addEventListener("click", function(){
+    customizeButton.style.display="none";
+    startDiv.style.display="none";
+    document.getElementById("customize").style.display="block";
+})
+
+function wordsValues(){
+    gameWords = [];
+    for (i = 0; i < 6; i ++){
+    let word = words[Math.floor(Math.random()*words.length)];
+    let index = words.indexOf(word);
+    let synonym = synonyms[index];
+    gameWords[i]=[word , index , synonym];
+    };
+    winningValue = gameWords[Math.floor(Math.random()*gameWords.length)]
+    synonym.textContent = (winningValue[2])
+    console.log(winningValue);
+    
+//buttons
+    buttonOne.textContent = (gameWords[0][0]);
+    buttonTwo.textContent = (gameWords[1][0]);
+    buttonThree.textContent = (gameWords[2][0]);
+    buttonFour.textContent = (gameWords[3][0]);
+    buttonFive.textContent = (gameWords[4][0]);
+    buttonSix.textContent = (gameWords[5][0]);
+};
