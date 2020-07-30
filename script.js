@@ -382,6 +382,29 @@ customizeButton.addEventListener("click", function(){
 })
 
 
+
+document.getElementById("newWord").addEventListener("click", function(){
+    customWords.push(document.getElementById("newWords").value);
+    console.log(customWords);
+    newSynonyms();
+
+})
+let fullAddress;
+function newSynonyms(){
+    for (i = 0; i < customWords.length; i ++){
+    fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +customWords[i] +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
+    fetch(fullAddress)
+        .then(function(responseData){
+            return responseData.json();
+        })
+        .then(function(jsonData){
+            console.log(jsonData);
+            customSynonyms.push(jsonData[0].meta.syns[0][0]);
+            console.log(jsonData[0].meta.syns[0][0]);
+        })
+}};
+console.log(customSynonyms);
+
 function wordsValues(){
     gameWords = [];
     for (i = 0; i < 6; i ++){
@@ -403,38 +426,10 @@ function wordsValues(){
     buttonSix.textContent = (gameWords[5][0]);
 };
 
-document.getElementById("newWord").addEventListener("click", function(){
-    customWords.push(document.getElementById("newWords").value);
-    console.log(customWords);
-
-})
-let fullAddress;
-function newSynonyms(){
-    for (i = 0; i < customWords.length; i ++){
-    fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +customWords[i] +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
-    fetch(fullAddress)
-        .then(response => {
-            return response.json();
-        })
-        .then(data =>{
-            customSynonyms.push(data.meta.syns[1][1]);
-            console.log(data.meta.syns[1][1]);
-        })
-}};
-
 document.getElementById("play").addEventListener("click", function(){
-    newSynonyms;
     words=customWords;
     synonyms=customSynonyms;
     wordsValues();
     document.getElementById("customize").style.display="none";
     document.getElementById("mainboard").style.display="block";
-})
-fetch("https://dictionaryapi.com/api/v3/references/ithesaurus/json/walk?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c")
-        .then(response => {
-            return response.json();
-        })
-        .then(data =>{
-            customSynonyms.push(data.meta.syns[1][1]);
-            console.log(data.meta.syns[1][1]);
-        })
+});
