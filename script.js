@@ -295,6 +295,7 @@ defaultSynonyms = [
 let words;
 let synonyms;
 let customWords=[];
+let customSynonyms=[];
 
 
 //Start with popup of directions
@@ -405,4 +406,35 @@ function wordsValues(){
 document.getElementById("newWord").addEventListener("click", function(){
     customWords.push(document.getElementById("newWords").value);
     console.log(customWords);
+
 })
+let fullAddress;
+function newSynonyms(){
+    for (i = 0; i < customWords.length; i ++){
+    fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +customWords[i] +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
+    fetch(fullAddress)
+        .then(response => {
+            return response.json();
+        })
+        .then(data =>{
+            customSynonyms.push(data.meta.syns[1][1]);
+            console.log(data.meta.syns[1][1]);
+        })
+}};
+
+document.getElementById("play").addEventListener("click", function(){
+    newSynonyms;
+    words=customWords;
+    synonyms=customSynonyms;
+    wordsValues();
+    document.getElementById("customize").style.display="none";
+    document.getElementById("mainboard").style.display="block";
+})
+fetch("https://dictionaryapi.com/api/v3/references/ithesaurus/json/walk?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c")
+        .then(response => {
+            return response.json();
+        })
+        .then(data =>{
+            customSynonyms.push(data.meta.syns[1][1]);
+            console.log(data.meta.syns[1][1]);
+        })
