@@ -294,6 +294,7 @@ defaultSynonyms = [
 ];
 let words;
 let synonyms;
+let customWords=[];
 
 
 //Start with popup of directions
@@ -379,6 +380,7 @@ customizeButton.addEventListener("click", function(){
     document.getElementById("customize").style.display="block";
 })
 
+
 function wordsValues(){
     gameWords = [];
     for (i = 0; i < 6; i ++){
@@ -399,3 +401,8 @@ function wordsValues(){
     buttonFive.textContent = (gameWords[4][0]);
     buttonSix.textContent = (gameWords[5][0]);
 };
+
+document.getElementById("newWord").addEventListener("click", function(){
+    customWords.push(document.getElementById("newWords").value);
+    console.log(customWords);
+})
