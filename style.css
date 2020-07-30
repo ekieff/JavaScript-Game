@@ -1,27 +1,70 @@
+body {
+    font-family: 'Roboto', sans-serif;
+};
 .mainboard {
    border: 5px solid black;
    width: 320px;
    height: 480px;
    margin: auto;
    position: relative;
-   display: none;
-};
+   text-align: center;
+}
+
 #game {
     display: flex;
     flex-direction: column;
     height: 300px;
     width: 320px;
+    text-align: center;
 }
+
 .btn {
     height: 13%;
-    width: 45%;
+    width: 75%;
     margin-bottom: 10px;
     font-size: 25px;
-    margin-left: 10px;
+    color: white;
+    background-color: #1782fd;
+    border-radius: 12px;
+    border: none;
+    margin: auto;
+
 }
+
 h1 {
     font-size: 30px;
 }
+
 #winner{
     display:none;
+}
+
+#mainboard{
+    display: none;
+}
+#synonym{
+    text-align: center;
+}
+.turn {
+    text-align: center;
+}
+#start{
+    color: white;
+    background-color: #1782fd; 
+    height: 13%;
+    width: 75%;
+    font-size: 25px;
+    border: none;
+    border-radius: 12px;
+    position: center;
+}
+#beginAgain{
+    color: white;
+    background-color: #1782fd; 
+    height: 13%;
+    width: 75%;
+    font-size: 25px;
+    border: none;
+    border-radius: 12px;
+    position: center;
 }

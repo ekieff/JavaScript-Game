@@ -21,7 +21,7 @@ let winningValue;
 let startButton = document.getElementById("start");
 let startDiv = document.getElementById("opening");
 let playAgainButton = document.getElementById("playAgain");
-
+let customizeButton = document.getElementById("makeYourOwn");
 console.log(btns);
 words = [
 "Abolish",
