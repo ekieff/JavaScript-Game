@@ -384,15 +384,12 @@ customizeButton.addEventListener("click", function(){
 
 
 document.getElementById("newWord").addEventListener("click", function(){
-    customWords.push(document.getElementById("newWords").value);
+    let newWord = document.getElementById("newWords").value
+    customWords.push(newWord);
+    document.getElementById("newWords").value = "";
     console.log(customWords);
-    newSynonyms();
 
-})
-let fullAddress;
-function newSynonyms(){
-    for (i = 0; i < customWords.length; i ++){
-    fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +customWords[i] +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
+    let fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +newWord +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
     fetch(fullAddress)
         .then(function(responseData){
             return responseData.json();
@@ -402,11 +399,22 @@ function newSynonyms(){
             customSynonyms.push(jsonData[0].meta.syns[0][0]);
             console.log(jsonData[0].meta.syns[0][0]);
         })
-}};
+});
 console.log(customSynonyms);
+
+
+document.getElementById("play").addEventListener("click", function(){
+    words=customWords;
+    synonyms=customSynonyms;
+    console.log(customSynonyms);
+    wordsValues();
+    document.getElementById("customize").style.display="none";
+    document.getElementById("mainboard").style.display="block";
+});
 
 function wordsValues(){
     gameWords = [];
+    console.log(words);
     for (i = 0; i < 6; i ++){
     let word = words[Math.floor(Math.random()*words.length)];
     let index = words.indexOf(word);
@@ -425,11 +433,3 @@ function wordsValues(){
     buttonFive.textContent = (gameWords[4][0]);
     buttonSix.textContent = (gameWords[5][0]);
 };
-
-document.getElementById("play").addEventListener("click", function(){
-    words=customWords;
-    synonyms=customSynonyms;
-    wordsValues();
-    document.getElementById("customize").style.display="none";
-    document.getElementById("mainboard").style.display="block";
-});
