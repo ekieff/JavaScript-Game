@@ -1,12 +1,14 @@
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #f1f1f0;
+    color: white;
+    text-align: center;
 };
+
 .mainboard {
    border: 5px solid black;
    width: 320px;
    height: 480px;
-   margin: auto;
-   position: relative;
    text-align: center;
 }
 
@@ -16,6 +18,7 @@ body {
     height: 300px;
     width: 320px;
     text-align: center;
+    margin: auto;
 }
 
 .btn {
@@ -24,7 +27,7 @@ body {
     margin-bottom: 10px;
     font-size: 25px;
     color: white;
-    background-color: #1782fd;
+    background-color: #2facb3;;
     border-radius: 12px;
     border: none;
     margin: auto;
@@ -33,6 +36,14 @@ body {
 
 h1 {
     font-size: 30px;
+    border: 0 solid none;
+    background-color: #f5d315;
+    border-width: 120px;
+    margin: none;
+    height: 13%;
+    width: 75%;
+    text-align: center;
+    display: inline-block;
 }
 
 #winner{
@@ -50,7 +61,7 @@ h1 {
 }
 #start{
     color: white;
-    background-color: #1782fd; 
+    background-color: #2facb3; 
     height: 13%;
     width: 75%;
     font-size: 25px;
@@ -58,10 +69,11 @@ h1 {
     border-radius: 12px;
     position: center;
     margin-bottom: 10px;
+    text-align: center;
 }
 #beginAgain{
     color: white;
-    background-color: #1782fd; 
+    background-color: #f5d315; 
     height: 13%;
     width: 75%;
     font-size: 25px;
@@ -71,7 +83,7 @@ h1 {
 }
 #makeYourOwn{
     color: white;
-    background-color: #1782fd; 
+    background-color: #f5d315; 
     height: 13%;
     width: 75%;
     font-size: 25px;
@@ -81,4 +93,46 @@ h1 {
 }
 #customize{
     display: none;
+}
+button {
+    color: white;
+    background-color: #f5d315; 
+    height: 13%;
+    width: 75%;
+    font-size: 25px;
+    border: none;
+    border-radius: 12px;
+    position: center;
+    margin-bottom: 10px;
+    margin-top: 12px;
+
+}
+
+p{
+    height: 13%;
+    width: 75%;
+    background: #2facb3;;
+    font-size: 25px;
+    font-weight: 100;
+    display: inline-block;
+    margin: auto;
+}
+label{
+    background: #2facb3;;
+    font-size: 18px;
+    margin-right: 15px;
+}
+input{
+    width: 250px;
+    height: 13%;
+    padding: 8px;
+
+}
+form{
+    margin-top: 100px;
+    height: 13%;
+}
+#opening{
+    margin: auto;
+    display: inline-block;
 }

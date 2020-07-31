@@ -1,7 +1,4 @@
-//create an array from words.js
-//log 6 random values from word.js
-// for each value in the new array, set into btn
-//identify important HTML elements
+
 let buttonOne = document.getElementById('btnone');
 let buttonTwo = document.getElementById('btntwo');
 let buttonThree = document.getElementById('btnthree');
@@ -13,18 +10,18 @@ let opening = document.getElementsByClassName("opening");
 let turn = document.getElementById("turn");
 let gameWords = [];
 let gameSynonym = document.getElementById("synonym");
-let player = "blue";
-let blueScore = 0; //remember that light yellow and light blue are lease likely to be unreadable to colorblind students
-let yellowScore = 0;
-let gameScore = document.getElementById("score");
+let player = "Player One";
+let playerOneScore = 0; 
+let playerTwoScore = 0;
+let displayPlayerOneScore = document.getElementById("playerOneScore");
+let displayPlayerTwoScore = document.getElementById("playerTwoScore");
 let winningValue;
 let startButton = document.getElementById("start");
 let startDiv = document.getElementById("opening");
 let playAgainButton = document.getElementById("playAgain");
 let customizeButton = document.getElementById("makeYourOwn");
-console.log(btns);
-defaultWords = [
-"Abolish",
+defaultWords = [    
+"abolish",
 "absurd",
 "abuse",
 "access",
@@ -297,85 +294,65 @@ let synonyms;
 let customWords=[];
 let customSynonyms=[];
 
-
-//Start with popup of directions
-
-//return a random word
-
-
-//use wordsValue to log values into gameWords
-console.log(gameWords); //references the word in the gamewords, need to log into the button text content
-
-//log event listener on buttons, if value is true..add to player one score 
-function checkWin(target){
-    console.log(target.textContent);
-    if (target.textContent==winningValue[0] && player=="blue"){
-        console.log(true);
-        blueScore ++;
-        player = "yellow";
+function gamePlay(target){  //if button choice is the right value, increase score, always change user, always change words and relog scores, and prompt next user.
+    if (target.textContent==winningValue[0] && player=="Player One"){
+        playerOneScore ++;
+        player = "Player Two";
+        checkIfEndGame();   //for correct choices check if the scores prompt a win.
+    }else if (target.textContent==winningValue[0] && player=="Player Two"){
+        playerTwoScore ++;
+        player = "Player One";
         checkIfEndGame();
-        wordsValues();
-    }else if (target.textContent==winningValue[0] && player=="yellow"){
-        console.log(true);
-        yellowScore ++;
-        player = "blue";
-        checkIfEndGame();
-        wordsValues();
-    } else if (target.textContent!==winningValue[0] && player=="blue"){
-        console.log(false);
-        player = "yellow";
-        wordsValues();
-    } else if(target.textContent!==winningValue[0] && player=="yellow"){
-        console.log(false);
-        player = "blue";
-        wordsValues()
+    } else if (target.textContent!==winningValue[0] && player=="Player One"){
+        player = "Player Two";
+    } else if(target.textContent!==winningValue[0] && player=="Player Two"){
+        player = "Player One";
     };
-    console.log(blueScore);
-    console.log(yellowScore);
+
+    wordsValues();
     turn.textContent = ("It's " +player + "'s turn." );
-    gameScore.textContent = ("Blue: " + blueScore + " Yellow: " + yellowScore)
+    displayPlayerOneScore.textContent = ("Player One: " + playerOneScore)
+    displayPlayerTwoScore.textContent = (" Player Two: " + playerTwoScore)
 }
 
-btns.forEach(btn => {
+btns.forEach(btn => { //on click run game play.
 
    btn.addEventListener('click', event =>{
-    checkWin(event.target);
+    gamePlay(event.target);
     })
 });
 
 
-function checkIfEndGame (){
-    if (blueScore >= 10){
-        console.log("Blue Player Wins!")
-        blueScore = 0;
-        yellowScore = 0;
+function checkIfEndGame (){ //if the score of a player is 10, reset score values for next play. for each, close gameplay and open the winner div.
+    if (playerOneScore >= 10){
+        playerOneScore = 0;
+        playerTwoScore = 0;
         document.getElementById("mainboard").style.display="none";
         document.getElementById("winner").style.display="block";
-        document.getElementById("winnerTitle").textContent=("Blue Player Wins!")
-    } else if (yellowScore >=10){
-        document.getElementById("winnerTitle").textContent=("Yellow Player Wins!")
-        blueScore = 0;
-        yellowScore = 0;
+        document.getElementById("winnerTitle").textContent=("Player One Wins!")
+    } else if (playerTwoScore >=10){
+        document.getElementById("winnerTitle").textContent=("Player Two Wins!")
+        playerOneScore = 0;
+        playerTwoScore = 0;
         document.getElementById("mainboard").style.display="none";
         document.getElementById("winner").style.display="block";
     }
 }
 
-startButton.addEventListener('click', function(){
+startButton.addEventListener('click', function(){   //start button from the main screen uses default array to load word values, opens game page
     startDiv.style.display="none";
     document.getElementById("mainboard").style.display="block";
     words=defaultWords;
     synonyms=defaultSynonyms;
     wordsValues();
-
 })
 
-playAgainButton.addEventListener("click", function(){
+playAgainButton.addEventListener("click", function(){   //after win screen, button to replay, will open the game back up.
     document.getElementById("mainboard").style.display="block";
     document.getElementById("winner").style.display="none";
 })
 
-customizeButton.addEventListener("click", function(){
+customizeButton.addEventListener("click", function(){   //on the start screen, if choosing to build custom, opens custom view.
     customizeButton.style.display="none";
     startDiv.style.display="none";
     document.getElementById("customize").style.display="block";
@@ -383,11 +360,10 @@ customizeButton.addEventListener("click", function(){
 
 
 
-document.getElementById("newWord").addEventListener("click", function(){
+document.getElementById("newWord").addEventListener("click", function(){    //on submitting a new word, pulls value and logs into file, at the same time pulls the synonym from the api and logs to synonyms.
     let newWord = document.getElementById("newWords").value
     customWords.push(newWord);
     document.getElementById("newWords").value = "";
-    console.log(customWords);
 
     let fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +newWord +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
     fetch(fullAddress)
@@ -395,27 +371,22 @@ document.getElementById("newWord").addEventListener("click", function(){
             return responseData.json();
         })
         .then(function(jsonData){
-            console.log(jsonData);
             customSynonyms.push(jsonData[0].meta.syns[0][0]);
-            console.log(jsonData[0].meta.syns[0][0]);
         })
 });
-console.log(customSynonyms);
 
 
-document.getElementById("play").addEventListener("click", function(){
+document.getElementById("play").addEventListener("click", function(){   //on the play button in custom input, creates the play values. setting the words for the play values and opening gameboard.
     words=customWords;
     synonyms=customSynonyms;
-    console.log(customSynonyms);
     wordsValues();
     document.getElementById("customize").style.display="none";
     document.getElementById("mainboard").style.display="block";
 });
 
-function wordsValues(){
-    gameWords = [];
-    console.log(words);
-    for (i = 0; i < 6; i ++){
+function wordsValues(){ //creates array with words, for each round logs 4 random words into the array, using the index value of the word, matches the synonym, returns word, value and synonym into game words.
+    gameWords = [];     //also finds a random synonym to create the synonym clue. logs values into buttons.
+    for (i = 0; i < 4; i ++){
     let word = words[Math.floor(Math.random()*words.length)];
     let index = words.indexOf(word);
     let synonym = synonyms[index];
@@ -423,13 +394,10 @@ function wordsValues(){
     };
     winningValue = gameWords[Math.floor(Math.random()*gameWords.length)]
     synonym.textContent = (winningValue[2])
-    console.log(winningValue);
     
 //buttons
     buttonOne.textContent = (gameWords[0][0]);
     buttonTwo.textContent = (gameWords[1][0]);
     buttonThree.textContent = (gameWords[2][0]);
     buttonFour.textContent = (gameWords[3][0]);
-    buttonFive.textContent = (gameWords[4][0]);
-    buttonSix.textContent = (gameWords[5][0]);
 };

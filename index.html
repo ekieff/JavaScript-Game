@@ -16,12 +16,11 @@
             <button class="two btn" id="btntwo"></button>
             <button class="three btn" id="btnthree"></button>
             <button class="four btn" id="btnfour"></button>
-            <button class="five btn" id="btnfive"></button>
-            <button class="six btn" id="btnsix"></button>
         </div>
         <div class="turn">
-            <h1 id = "turn">Player Blue begins!</h1>
-            <h1 id= "score"></h1>
+            <h1 id = "turn">Player One begins!</h1>
+            <h1 id= "playerOneScore"></h1>
+            <h1 id= "playerTwoScore"></h1>
         </div>
     </div>
 
@@ -39,8 +38,10 @@
         </div>
     <div class="customize" id="customize">
         <form>
-            <label for="label">Input your words here and submit for each </label>
-            <input type="text" id="newWords"><br>
+            <div>
+                <label for="label"> Enter each word below </label>
+                <input type="text" id="newWords"><br>
+            </div>
             <button class="form" id="newWord" type="button">Add word</button>
             <button class="play" id="play" type="button">Start Game</button>
         </form>
