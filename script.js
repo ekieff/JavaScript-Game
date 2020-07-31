@@ -324,13 +324,13 @@ btns.forEach(btn => { //on click run game play.
 
 
 function checkIfEndGame (){ //if the score of a player is 10, reset score values for next play. for each, close gameplay and open the winner div.
-    if (playerOneScore >= 10){
+    if (playerOneScore >= 5){
         playerOneScore = 0;
         playerTwoScore = 0;
         document.getElementById("mainboard").style.display="none";
         document.getElementById("winner").style.display="block";
         document.getElementById("winnerTitle").textContent=("Player One Wins!")
-    } else if (playerTwoScore >=10){
+    } else if (playerTwoScore >=5){
         document.getElementById("winnerTitle").textContent=("Player Two Wins!")
         playerOneScore = 0;
         playerTwoScore = 0;
