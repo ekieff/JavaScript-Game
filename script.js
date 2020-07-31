@@ -366,7 +366,7 @@ document.getElementById("newWord").addEventListener("click", function(){    //on
     customWords.push(newWord);
     document.getElementById("newWords").value = "";
 
-    let fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +newWord +mykey
+    let fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +newWord +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
     fetch(fullAddress)
         .then(function(responseData){
             return responseData.json();
