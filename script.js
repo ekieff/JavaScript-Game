@@ -293,6 +293,7 @@ let words;
 let synonyms;
 let customWords=[];
 let customSynonyms=[];
+var mykey = config.MY_KEY;
 
 function gamePlay(target){  //if button choice is the right value, increase score, always change user, always change words and relog scores, and prompt next user.
     if (target.textContent==winningValue[0] && player=="Player One"){
@@ -365,7 +366,7 @@ document.getElementById("newWord").addEventListener("click", function(){    //on
     customWords.push(newWord);
     document.getElementById("newWords").value = "";
 
-    let fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +newWord +"?key=5deba92a-f0fd-4d7a-b2ac-7a327f04d33c"
+    let fullAddress = "https://dictionaryapi.com/api/v3/references/ithesaurus/json/" +newWord +mykey
     fetch(fullAddress)
         .then(function(responseData){
             return responseData.json();
