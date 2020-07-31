@@ -293,7 +293,7 @@ let words;
 let synonyms;
 let customWords=[];
 let customSynonyms=[];
-var mykey = config.MY_KEY;
+//var mykey = config.MY_KEY;
 
 function gamePlay(target){  //if button choice is the right value, increase score, always change user, always change words and relog scores, and prompt next user.
     if (target.textContent==winningValue[0] && player=="Player One"){
